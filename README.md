@@ -1,5 +1,6 @@
 ## Overview
 Author: Adam Zimmer
+
 Purpose: Adcellerant Code Challenge
 
 This repository includes
