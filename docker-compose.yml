@@ -1,0 +1,36 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: slack
+  web-app:
+    build:
+      context: ./adcell-app
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules/
+      - ./adcell-app:/app
+    ports:
+      - '3000:3000'
+    restart: on-failure
+    container_name: web-app
+  adcell-api:
+    build:
+      context: ./adcell-api
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3001:3001'
+    restart: on-failure
+    container_name: adcell-api
+    volumes:
+      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
+      - ./adcell-api:/app # Look at the server directory and copy everything into the app folder in the container
+    environment:
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres
+      - PGPORT=5432
