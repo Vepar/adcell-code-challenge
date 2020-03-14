@@ -10,6 +10,7 @@ import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import MouseIcon from '@material-ui/icons/Mouse';
 import CountUp from 'react-countup';
 //d
+
 const styles = theme => ({
   root: {
     padding: '40px'
@@ -89,11 +90,15 @@ class EngagementsDashboard extends React.Component {
 
   async loadInitialData() {
     const products = await axios.get(
-      `${process.env.REACT_APP_API_BASE}/products`
+      // `${process.env.REACT_APP_API_BASE}/products`
+      `http://localhost:3001/products`
+
     );
 
     const adSources = await axios.get(
-      `${process.env.REACT_APP_API_BASE}/adSources`
+      // `${process.env.REACT_APP_API_BASE}/adSources`
+      `http://localhost:3001/adSources`
+
     );
 
     this.loadChartData();
@@ -106,7 +111,9 @@ class EngagementsDashboard extends React.Component {
 
   async loadChartData() {
     const chartData = await axios.get(
-      `${process.env.REACT_APP_API_BASE}/engagements/current`
+      // `${process.env.REACT_APP_API_BASE}/engagements/current`
+      `http://localhost:3001/engagements/current`
+
     );
 
     // get total click count

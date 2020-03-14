@@ -61,7 +61,8 @@ class HistoricCampaignDetail extends React.Component {
 
   async loadHistoricalChartData() {
     const historicalChartData = await axios.get(
-      `${process.env.REACT_APP_API_BASE}/engagements/historical?product=${this.state.productSelection}&adSource=${this.state.adSourceSelection}`
+      // `${process.env.REACT_APP_API_BASE}/engagements/historical?product=${this.state.productSelection}&adSource=${this.state.adSourceSelection}`
+      `http://localhost:3001/engagements/historical?product=${this.state.productSelection}&adSource=${this.state.adSourceSelection}`
     );
 
     const labels = [];
