@@ -10,6 +10,9 @@ services:
     build:
       context: ./adcell-app
       dockerfile: Dockerfile.dev
+    depends_on:
+      - adcell-api
+      - postgres
     volumes:
       - /app/node_modules/
       - ./adcell-app:/app
